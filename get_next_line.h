@@ -6,7 +6,7 @@
 /*   By: ccrapat <ccrapat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/18 23:02:09 by ccrapat           #+#    #+#             */
-/*   Updated: 2015/01/19 18:37:07 by ccrapat          ###   ########.fr       */
+/*   Updated: 2015/02/18 18:27:49 by ccrapat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct		s_get
 {
 	char		reader[BUFF_SIZE + 1];
-	char		*stock;
+	char		*stock[256];
 	char		*tmp;
 	int			i;
 	int			ret;
