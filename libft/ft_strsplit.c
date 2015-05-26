@@ -6,7 +6,7 @@
 /*   By: ccrapat <ccrapat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 17:31:41 by ccrapat           #+#    #+#             */
-/*   Updated: 2014/11/10 07:54:08 by ccrapat          ###   ########.fr       */
+/*   Updated: 2015/02/18 18:01:01 by ccrapat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,62 @@
 #include <stdlib.h>
 #include <string.h>
 
-static size_t	strcchar(const char *s, char c)
+static int		ft_next(const char *str, char charset, int i)
 {
-	size_t		i;
+	int		first;
+	int		result;
 
-	i = 0;
-	while (*s)
+	result = 0;
+	first = i;
+	while (str[i] != '\0')
 	{
-		while (*s == c && *s)
-			s++;
+		if (str[i] == charset)
+			break ;
 		i++;
-		while (*s != c && *s)
-			s++;
 	}
-	return (i);
+	result = i - first;
+	return (result);
 }
 
-static size_t	ft_check_split(const char *s, char c)
+static int		ft_charset(const char *str, char charset)
 {
-	size_t		i;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	return (i + 1);
-}
-
-char			**ft_strsplit(const char *s, char c)
-{
-	char	**ptr;
 	int		i;
+	int		result;
 
 	i = 0;
-	if (!s || !c)
-		return (NULL);
-	if (!(ptr = (char **)malloc(sizeof(char *) * strcchar(s, c) + 1)))
-		return (NULL);
-	while (*s)
+	result = 1;
+	while (str[i] != '\0')
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s)
+		if (str[i] == charset)
 		{
-			ptr[i] = ft_strsub(s, 0, ft_check_split(s, c));
-			s += ft_strlen(ptr[i]);
-			i++;
+			result++;
+			while (str[i] == charset)
+				i++;
 		}
+		i++;
 	}
-	ptr[i] = NULL;
-	return (ptr);
+	return (result);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**split;
+	int		i;
+	int		n;
+
+	i = 0;
+	n = 0;
+	split = (char **)malloc(sizeof(char *) * (ft_charset(s, c) + 1));
+	while (s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		split[n] = ft_strsub(s, i, ft_next(s, c, i));
+		i += ft_next(s, c, i);
+		n++;
+	}
+	split[n] = NULL;
+	return (split);
 }

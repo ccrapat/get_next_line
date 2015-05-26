@@ -18,9 +18,7 @@ static t_get	*ft_init_and_free_ptr(t_get **ptr, int choice)
 
 	tmp = *ptr;
 	if (choice == 0)
-	{
 		tmp = (t_get *)malloc(sizeof(t_get));
-	}
 	return (tmp);
 }
 

@@ -6,31 +6,30 @@
 /*   By: ccrapat <ccrapat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 17:33:51 by ccrapat           #+#    #+#             */
-/*   Updated: 2014/11/10 09:51:13 by ccrapat          ###   ########.fr       */
+/*   Updated: 2015/02/18 17:59:52 by ccrapat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 
 char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char		*ptr;
-	size_t		i;
+	char	*dst;
+	int		i;
 
 	i = 0;
-	if (!s || !len)
+	dst = ft_strnew(len + 1);
+	if (dst == NULL)
 		return (NULL);
-	if (!(ptr = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	s += start;
-	while (len--)
+	while (len > 0)
 	{
-		ptr[i] = s[i];
-		if (ptr[i] == '\0')
-			return (ptr);
+		dst[i] = s[start];
+		start++;
 		i++;
+		len--;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	dst[i] = '\0';
+	return (dst);
 }

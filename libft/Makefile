@@ -6,23 +6,28 @@
 #    By: ccrapat <ccrapat@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/10 00:10:22 by ccrapat           #+#    #+#              #
-#    Updated: 2014/11/26 17:43:40 by ccrapat          ###   ########.fr        #
+#    Updated: 2014/11/10 10:21:19 by ccrapat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a 
 CC = gcc
 RM = rm -f
-CFLAGS = -I includes -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 OBJ = $(SRC:.c=.o)
 SRC =		ft_putnbr_fd.c \
 			ft_strstrcpy.c \
+			ft_lstdelone.c \
+			ft_lstadd.c \
+			ft_lstiter.c \
 			ft_striteri.c \
 			ft_strmap.c \
 			ft_strmapi.c \
 			ft_striter.c \
+			ft_lstmap.c \
 			ft_memcpy.c \
 			ft_putendl_fd.c \
+			ft_lstdel.c \
 			ft_putstr_fd.c \
 			ft_putchar_fd.c \
 			ft_itoa.c \
@@ -70,6 +75,7 @@ SRC =		ft_putnbr_fd.c \
 			ft_strclr.c \
 			ft_strjoin.c \
 			ft_strsplit.c \
+			ft_lstnew.c
 
 all: $(NAME)
 
